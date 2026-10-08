@@ -15,11 +15,10 @@ function displayEmployees() {
             <td>${employee.position}</td>
             <td>${employee.email}</td>
             <td>${employee.phone}</td>
-            <td>
-                <button onclick="deleteEmployee(${index})">
-                    Delete
-                </button>
-            </td>
+        <td>
+    <button onclick="editEmployee(${index})">Edit</button>
+    <button onclick="deleteEmployee(${index})">Delete</button>
+</td>
         `;
 
         employeeList.appendChild(row);
