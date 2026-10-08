@@ -41,10 +41,36 @@ if (employeeForm) {
 
         employeeForm.reset();
 
-        displayEmployees();
+    function displayEmployees() {
 
-        alert("Employee added successfully!");
+    employeeList.innerHTML = "";
+
+    employees.forEach(function(employee, index) {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${employee.name}</td>
+            <td>${employee.position}</td>
+            <td>${employee.email}</td>
+            <td>${employee.phone}</td>
+            <td>
+                <button onclick="deleteEmployee(${index})">
+                    Delete
+                </button>
+            </td>
+        `;
+
+        employeeList.appendChild(row);
     });
+function deleteEmployee(index) {
 
-    displayEmployees();
+    if (confirm("Are you sure you want to delete this employee?")) {
+
+        employees.splice(index, 1);
+
+        localStorage.setItem("employees", JSON.stringify(employees));
+
+        displayEmployees();
+    }
 }
