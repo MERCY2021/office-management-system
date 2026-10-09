@@ -10,26 +10,46 @@ let employees = JSON.parse(localStorage.getItem("employees")) || [];
 
 let editingIndex = -1;
 
-
 // Display employees
-function displayEmployees() {
 
+function displayEmployees() {
     employeeList.innerHTML = "";
 
+    const searchTerm = employeeSearch
+        ? employeeSearch.value.toLowerCase().trim()
+        : "";
+
     employees.forEach(function(employee, index) {
+        const matchesSearch = [
+            employee.name,
+            employee.position,
+            employee.email,
+            employee.phone
+        ].some(function(value) {
+            return String(value || "")
+                .toLowerCase()
+                .includes(searchTerm);
+        });
+
+        if (!matchesSearch) return;
 
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${employee.name}</td>
-            <td>${employee.position}</td>
-            <td>${employee.email}</td>
-            <td>${employee.phone}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>
                 <button onclick="editEmployee(${index})">Edit</button>
                 <button onclick="deleteEmployee(${index})">Delete</button>
             </td>
         `;
+
+        row.cells[0].textContent = employee.name;
+        row.cells[1].textContent = employee.position;
+        row.cells[2].textContent = employee.email;
+        row.cells[3].textContent = employee.phone;
 
         employeeList.appendChild(row);
     });
@@ -114,3 +134,6 @@ function deleteEmployee(index) {
 
 // Display employees when page opens
 displayEmployees();
+if (employeeSearch) {
+    employeeSearch.addEventListener("input", displayEmployees);
+}
