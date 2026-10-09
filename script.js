@@ -1,6 +1,7 @@
 
 const employeeForm = document.getElementById("employeeForm");
 const employeeList = document.getElementById("employeeList");
+const employeeSearch = document.getElementById("employeeSearch");
 const submitButton = employeeForm
     ? employeeForm.querySelector("button[type='submit']")
     : null;
