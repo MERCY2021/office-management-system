@@ -20,6 +20,15 @@ const employeeCount = document.getElementById("employeeCount");
 if (employeeCount) {
     employeeCount.textContent = employees.length;
 }
+    const positionCount = document.getElementById("positionCount");
+
+if (positionCount) {
+    const positions = employees
+        .map(employee => employee.position.trim().toLowerCase())
+        .filter(position => position !== "");
+
+    positionCount.textContent = new Set(positions).size;
+}
 
 
     const searchTerm = employeeSearch
