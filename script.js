@@ -14,6 +14,13 @@ let editingIndex = -1;
 
 function displayEmployees() {
     employeeList.innerHTML = "";
+    
+const employeeCount = document.getElementById("employeeCount");
+
+if (employeeCount) {
+    employeeCount.textContent = employees.length;
+}
+
 
     const searchTerm = employeeSearch
         ? employeeSearch.value.toLowerCase().trim()
