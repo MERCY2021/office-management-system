@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Office Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="dashboard.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Office Management System</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="employees.html">Employees</a>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <h2>Dashboard Overview</h2>
+        <p>Welcome to your Office Management System.</p>
+
+        <section class="dashboard-cards">
+            <div class="card">
+                <h3>Total Employees</h3>
+                <p id="totalEmployees">0</p>
+            </div>
+
+            <div class="card">
+                <h3>System Status</h3>
+                <p>Active</p>
+            </div>
+        </section>
+
+        <section class="dashboard-actions">
+            <h3>Quick Actions</h3>
+            <a class="button" href="employees.html">Manage Employees</a>
+            <a class="button" href="employees.html">Add Employee</a>
+        </section>
+    </main>
+</body>
+</html>
