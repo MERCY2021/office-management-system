@@ -59,6 +59,20 @@
         id="employeeSearch"
         placeholder="Search by name, position, email or phone..."
     >
+    
+<label for="positionFilter">Filter by Position</label>
+<select id="positionFilter">
+    <option value="">All Positions</option>
+</select>
+
+<label for="employeeSort">Sort Employees</label>
+<select id="employeeSort">
+    <option value="name-asc">Name (A–Z)</option>
+    <option value="name-desc">Name (Z–A)</option>
+    <option value="position-asc">Position (A–Z)</option>
+    <option value="position-desc">Position (Z–A)</option>
+</select>
+
 
         <table border="1" width="100%" cellpadding="10">
             <thead>
