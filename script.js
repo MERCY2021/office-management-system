@@ -134,18 +134,51 @@ function displayEmployees() {
 
 
 // Add or update employee
+
+ // Add or update employee
 if (employeeForm) {
-
     employeeForm.addEventListener("submit", function(event) {
-
         event.preventDefault();
 
         const employee = {
-            name: document.getElementById("name").value,
-            position: document.getElementById("position").value,
-            email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value
+            name: document.getElementById("name").value.trim(),
+            position: document.getElementById("position").value.trim(),
+            email: document.getElementById("email").value.trim().toLowerCase(),
+            phone: document.getElementById("phone").value.trim()
         };
+
+        // Prevent duplicate email addresses
+        const duplicateEmail = employees.some((existingEmployee, index) => {
+            return (
+                index !== editingIndex &&
+                String(existingEmployee.email || "").trim().toLowerCase() === employee.email
+            );
+        });
+
+        if (duplicateEmail) {
+            alert("This email address is already registered. Please use a different email.");
+            return;
+        }
+
+        // Update existing employee
+        if (editingIndex !== -1) {
+            employees[editingIndex] = employee;
+            editingIndex = -1;
+
+            submitButton.textContent = "Add Employee";
+        } else {
+            // Add new employee
+            employees.push(employee);
+        }
+
+        // Save changes
+        localStorage.setItem("employees", JSON.stringify(employees));
+
+        employeeForm.reset();
+        displayEmployees();
+    });
+}
+
 
 
         // Update existing employee
