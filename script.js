@@ -2,6 +2,10 @@
 const employeeForm = document.getElementById("employeeForm");
 const employeeList = document.getElementById("employeeList");
 const employeeSearch = document.getElementById("employeeSearch");
+
+const positionFilter = document.getElementById("positionFilter");
+const employeeSort = document.getElementById("employeeSort");
+
 const submitButton = employeeForm
     ? employeeForm.querySelector("button[type='submit']")
     : null;
@@ -14,58 +18,115 @@ let editingIndex = -1;
 
 function displayEmployees() {
     employeeList.innerHTML = "";
-    
-const employeeCount = document.getElementById("employeeCount");
 
-if (employeeCount) {
-    employeeCount.textContent = employees.length;
-}
+    // Total employees
+    const employeeCount = document.getElementById("employeeCount");
+    if (employeeCount) {
+        employeeCount.textContent = employees.length;
+    }
+
+    // Total unique positions
     const positionCount = document.getElementById("positionCount");
+    if (positionCount) {
+        const positions = employees
+            .map(employee => String(employee.position || "").trim().toLowerCase())
+            .filter(position => position !== "");
 
-if (positionCount) {
-    const positions = employees
-        .map(employee => employee.position.trim().toLowerCase())
-        .filter(position => position !== "");
+        positionCount.textContent = new Set(positions).size;
+    }
 
-    positionCount.textContent = new Set(positions).size;
-}
+    // Populate position dropdown
+    if (positionFilter) {
+        const selectedPosition = positionFilter.value;
 
+        const uniquePositions = [...new Map(
+            employees
+                .map(employee => String(employee.position || "").trim())
+                .filter(position => position !== "")
+                .map(position => [position.toLowerCase(), position])
+        ).values()].sort((a, b) => a.localeCompare(b));
 
+        positionFilter.innerHTML = '<option value="">All Positions</option>';
+
+        uniquePositions.forEach(position => {
+            const option = document.createElement("option");
+            option.value = position.toLowerCase();
+            option.textContent = position;
+            positionFilter.appendChild(option);
+        });
+
+        positionFilter.value = selectedPosition;
+    }
+
+    // Search and filter
     const searchTerm = employeeSearch
         ? employeeSearch.value.toLowerCase().trim()
         : "";
 
-    employees.forEach(function(employee, index) {
-        const matchesSearch = [
-            employee.name,
-            employee.position,
-            employee.email,
-            employee.phone
-        ].some(function(value) {
-            return String(value || "")
-                .toLowerCase()
-                .includes(searchTerm);
+    const selectedPosition = positionFilter
+        ? positionFilter.value
+        : "";
+
+    const sortOrder = employeeSort
+        ? employeeSort.value
+        : "name-asc";
+
+    let displayedEmployees = employees
+        .map((employee, index) => ({ employee, index }))
+        .filter(({ employee }) => {
+            const matchesSearch = [
+                employee.name,
+                employee.position,
+                employee.email,
+                employee.phone
+            ].some(value =>
+                String(value || "").toLowerCase().includes(searchTerm)
+            );
+
+            const matchesPosition = !selectedPosition ||
+                String(employee.position || "").trim().toLowerCase() === selectedPosition;
+
+            return matchesSearch && matchesPosition;
         });
 
-        if (!matchesSearch) return;
+    // Sort employees
+    displayedEmployees.sort((a, b) => {
+        const field = sortOrder.startsWith("position") ? "position" : "name";
 
+        const first = String(a.employee[field] || "");
+        const second = String(b.employee[field] || "");
+
+        const comparison = first.localeCompare(second, undefined, {
+            sensitivity: "base"
+        });
+
+        return sortOrder.endsWith("desc") ? -comparison : comparison;
+    });
+
+    // Display employee records
+    displayedEmployees.forEach(({ employee, index }) => {
         const row = document.createElement("tr");
 
-        row.innerHTML = `
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <button onclick="editEmployee(${index})">Edit</button>
-                <button onclick="deleteEmployee(${index})">Delete</button>
-            </td>
-        `;
+        [employee.name, employee.position, employee.email, employee.phone]
+            .forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value || "";
+                row.appendChild(cell);
+            });
 
-        row.cells[0].textContent = employee.name;
-        row.cells[1].textContent = employee.position;
-        row.cells[2].textContent = employee.email;
-        row.cells[3].textContent = employee.phone;
+        const actions = document.createElement("td");
+
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+        editButton.onclick = () => editEmployee(index);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.onclick = () => deleteEmployee(index);
+
+        actions.appendChild(editButton);
+        actions.appendChild(deleteButton);
+        row.appendChild(actions);
 
         employeeList.appendChild(row);
     });
@@ -152,4 +213,11 @@ function deleteEmployee(index) {
 displayEmployees();
 if (employeeSearch) {
     employeeSearch.addEventListener("input", displayEmployees);
+}
+if (positionFilter) {
+    positionFilter.addEventListener("change", displayEmployees);
+}
+
+if (employeeSort) {
+    employeeSort.addEventListener("change", displayEmployees);
 }
