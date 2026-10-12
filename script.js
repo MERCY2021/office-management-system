@@ -132,9 +132,6 @@ function displayEmployees() {
     });
 }
 
-
-// Add or update employee
-
  // Add or update employee
 if (employeeForm) {
     employeeForm.addEventListener("submit", function(event) {
