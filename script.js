@@ -177,36 +177,6 @@ if (employeeForm) {
 }
 
 
-
-        // Update existing employee
-        if (editingIndex !== -1) {
-
-            employees[editingIndex] = employee;
-
-            editingIndex = -1;
-
-            submitButton.textContent = "Add Employee";
-
-        }
-
-        // Add new employee
-        else {
-
-            employees.push(employee);
-
-        }
-
-
-        localStorage.setItem("employees", JSON.stringify(employees));
-
-        employeeForm.reset();
-
-        displayEmployees();
-
-    });
-}
-
-
 // Edit employee
 function editEmployee(index) {
 
