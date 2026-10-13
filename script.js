@@ -221,3 +221,88 @@ if (positionFilter) {
 if (employeeSort) {
     employeeSort.addEventListener("change", displayEmployees);
 }
+
+ // Download employee backup
+const backupButton = document.getElementById("backupButton");
+
+if (backupButton) {
+    backupButton.addEventListener("click", function() {
+        const backupData = JSON.stringify(employees, null, 2);
+        const blob = new Blob([backupData], {
+            type: "application/json"
+        });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = "employee-backup.json";
+        link.click();
+
+        URL.revokeObjectURL(url);
+    });
+}
+
+// Restore employee backup
+const restoreFile = document.getElementById("restoreFile");
+
+if (restoreFile) {
+    restoreFile.addEventListener("change", function(event) {
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function() {
+            try {
+                const backupData = JSON.parse(reader.result);
+
+                if (
+                    !Array.isArray(backupData) ||
+                    !backupData.every(employee =>
+                        employee &&
+                        typeof employee.name === "string" &&
+                        typeof employee.position === "string" &&
+                        typeof employee.email === "string" &&
+                        typeof employee.phone === "string"
+                    )
+                ) {
+                    alert("Invalid backup file. No changes were made.");
+                    return;
+                }
+
+                if (!confirm(
+                    "Restoring will replace the current employee list. Download a backup of current records first. Continue?"
+                )) {
+                    return;
+                }
+
+                employees = backupData;
+                localStorage.setItem(
+                    "employees",
+                    JSON.stringify(employees)
+                );
+
+                editingIndex = -1;
+
+                if (employeeForm) {
+                    employeeForm.reset();
+                }
+
+                if (submitButton) {
+                    submitButton.textContent = "Add Employee";
+                }
+
+                displayEmployees();
+                alert("Employee records restored successfully.");
+            } catch (error) {
+                alert("Could not read this backup file. Please select a valid JSON backup.");
+            } finally {
+                restoreFile.value = "";
+            }
+        };
+
+        reader.readAsText(file);
+    });
+}
