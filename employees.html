@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,145 +30,108 @@
 <div class="container">
 
     <h2>Employee Management</h2>
-    
-    
+
     <div class="card">
-        <h3>Department Management</h3>
-
-        <form id="departmentForm">
-            <label for="newDepartment">Department Name</label><br>
-            <input
-                type="text"
-                id="newDepartment"
-                placeholder="e.g. Information Technology"
-                required
-            >
-            <button type="submit">Add Department</button>
-        </form>
-
-        <h4>Existing Departments</h4>
-        <ul id="departmentNamesList"></ul>
+        <h3>Total Employees</h3>
+        <p id="employeeCount">0</p>
     </div>
 
-
     <div class="card">
-    <h3>Total Employees</h3>
-    <p id="employeeCount">0</p>
-</div>
-    
-<div class="card">
-    <h3>Total Positions</h3>
-    <p id="positionCount">0</p>
-</div>
-    
+        <h3>Total Positions</h3>
+        <p id="positionCount">0</p>
+    </div>
+
     <div class="card">
         <h3>Add Employee</h3>
 
-       
-<form id="employeeForm">
+        <form id="employeeForm">
 
-    <label for="name">Full Name</label><br>
-    <input
-        type="text"
-        id="name"
-        required
-        minlength="2"
-        placeholder="Enter full name"
-    ><br><br>
-    
-    <label for="department">Department</label><br>
-    <select id="department" required>
-        <option value="">Select Department</option>
-    </select><br><br>
+            <label for="name">Full Name</label><br>
+            <input
+                type="text"
+                id="name"
+                required
+                minlength="2"
+                placeholder="Enter full name"
+            ><br><br>
 
+            <label for="position">Position</label><br>
+            <input
+                type="text"
+                id="position"
+                required
+                placeholder="Enter job position"
+            ><br><br>
 
-    <label for="position">Position</label><br>
-    <input
-        type="text"
-        id="position"
-        required
-        placeholder="Enter job position"
-    ><br><br>
-    
-<label for="department">Department</label><br>
-<select id="department" required>
-    <option value="">Select Department</option>
-</select><br><br>
+            <label for="email">Email</label><br>
+            <input
+                type="email"
+                id="email"
+                required
+                placeholder="example@email.com"
+            ><br><br>
 
+            <label for="phone">Phone</label><br>
+            <input
+                type="tel"
+                id="phone"
+                required
+                pattern="[0-9+() -]{7,20}"
+                title="Enter a valid phone number using digits, spaces, +, - or parentheses"
+                placeholder="e.g. 0712345678"
+            ><br><br>
 
-    <label for="email">Email</label><br>
-    <input
-        type="email"
-        id="email"
-        required
-        placeholder="example@email.com"
-    ><br><br>
+            <button type="submit">Add Employee</button>
 
-    <label for="phone">Phone</label><br>
-    <input
-        type="tel"
-        id="phone"
-        required
-        pattern="[0-9+() -]{7,20}"
-        title="Enter a valid phone number using digits, spaces, +, - or parentheses"
-        placeholder="e.g. 0712345678"
-    ><br><br>
-
-    <button type="submit">Add Employee</button>
-
-</form>
-
+        </form>
     </div>
 
-    <br>   
-<div class="card">
-    <h3>Employee List</h3>
+    <br>
 
-    <label for="employeeSearch">Search Employees</label>
-    <input
-        type="text"
-        id="employeeSearch"
-        placeholder="Search by name, position, email or phone..."
-    >
-    
+    <div class="card">
+        <h3>Employee List</h3>
 
-<div class="employee-controls">
-    <div class="control-group">
-        <label for="positionFilter">Filter by Position</label>
-        <select id="positionFilter">
-            <option value="">All Positions</option>
-        </select>
-    </div>
-    <div class="control-group">
-        <label for="employeeSort">Sort Employees</label>
-        <select id="employeeSort">
-            <option value="name-asc">Name (A–Z)</option>
-            <option value="name-desc">Name (Z–A)</option>
-            <option value="position-asc">Position (A–Z)</option>
-            <option value="position-desc">Position (Z–A)</option>
-        </select>
-    </div>
-</div>
+        <label for="employeeSearch">Search Employees</label>
+        <input
+            type="text"
+            id="employeeSearch"
+            placeholder="Search by name, position, email or phone..."
+        >
+
+        <div class="employee-controls">
+
+            <div class="control-group">
+                <label for="positionFilter">Filter by Position</label>
+                <select id="positionFilter">
+                    <option value="">All Positions</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="employeeSort">Sort Employees</label>
+                <select id="employeeSort">
+                    <option value="name-asc">Name (A–Z)</option>
+                    <option value="name-desc">Name (Z–A)</option>
+                    <option value="position-asc">Position (A–Z)</option>
+                    <option value="position-desc">Position (Z–A)</option>
+                </select>
+            </div>
+
+        </div>
+
         <table border="1" width="100%" cellpadding="10">
-         
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Department</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Action</th>
-    </tr>
-</thead>
-
-
-
-            <tbody id="employeeList">
-            </tbody>
+            <tbody id="employeeList"></tbody>
         </table>
-
     </div>
 
     <br>
