@@ -29,6 +29,27 @@
 <div class="container">
 
     <h2>Employee Management</h2>
+    
+    
+    <div class="card">
+        <h3>Department Management</h3>
+
+        <form id="departmentForm">
+            <label for="newDepartment">Department Name</label><br>
+            <input
+                type="text"
+                id="newDepartment"
+                placeholder="e.g. Information Technology"
+                required
+            >
+            <button type="submit">Add Department</button>
+        </form>
+
+        <h4>Existing Departments</h4>
+        <ul id="departmentNamesList"></ul>
+    </div>
+
+
     <div class="card">
     <h3>Total Employees</h3>
     <p id="employeeCount">0</p>
@@ -67,6 +88,12 @@
         required
         placeholder="Enter job position"
     ><br><br>
+    
+<label for="department">Department</label><br>
+<select id="department" required>
+    <option value="">Select Department</option>
+</select><br><br>
+
 
     <label for="email">Email</label><br>
     <input
@@ -123,6 +150,7 @@
 </div>
         <table border="1" width="100%" cellpadding="10">
          
+
 <thead>
     <tr>
         <th>Name</th>
@@ -133,7 +161,6 @@
         <th>Action</th>
     </tr>
 </thead>
-```
 
 
 
