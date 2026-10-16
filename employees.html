@@ -53,6 +53,12 @@
         minlength="2"
         placeholder="Enter full name"
     ><br><br>
+    
+    <label for="department">Department</label><br>
+    <select id="department" required>
+        <option value="">Select Department</option>
+    </select><br><br>
+
 
     <label for="position">Position</label><br>
     <input
@@ -116,15 +122,20 @@
     </div>
 </div>
         <table border="1" width="100%" cellpadding="10">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-<th>Action</th>
-                </tr>
-            </thead>
+         
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Department</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Action</th>
+    </tr>
+</thead>
+```
+
+
 
             <tbody id="employeeList">
             </tbody>
