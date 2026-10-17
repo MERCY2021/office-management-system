@@ -204,6 +204,8 @@ taskList.addEventListener("click", function(event) {
 
     if (button.dataset.action === "edit") {
         loadEmployees();
+        assignedEmployee.addEventListener("focus", loadEmployees);
+assignedEmployee.addEventListener("click", loadEmployees);
 
         const employees = getEmployees();
         const employeeExists = employees.some(
