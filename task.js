@@ -14,9 +14,21 @@ let tasks = JSON.parse(localStorage.getItem("officeTasks")) || [];
 let editingTaskId = null;
 
 function getEmployees() {
-    return JSON.parse(localStorage.getItem("employees")) || [];
-}
+    try {
+        const savedEmployees = localStorage.getItem("employees");
 
+        if (!savedEmployees) {
+            return [];
+        }
+
+        const employees = JSON.parse(savedEmployees);
+
+        return Array.isArray(employees) ? employees : [];
+    } catch (error) {
+        console.error("Could not load employee records:", error);
+        return [];
+    }
+}
 function saveTasks() {
     localStorage.setItem("officeTasks", JSON.stringify(tasks));
 }
