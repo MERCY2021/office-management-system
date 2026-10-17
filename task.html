@@ -56,7 +56,15 @@
             </form>
         </div>
     <p><a href="index.html">← Back to Dashboard</a></p>
-        <p id="employeeConnectionCheck">Checking employee connection...</p>
+    <p id="employeeConnectionCheck">Employee connection check</p>
+
+<script>
+    const savedEmployees = localStorage.getItem("employees");
+    document.getElementById("employeeConnectionCheck").textContent =
+        savedEmployees
+            ? "Employee records found: " + JSON.parse(savedEmployees).length
+            : "No employee records found on this page.";
+</script>
 
     <script src="tasks.js"></script>
 </body>
