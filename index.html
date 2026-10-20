@@ -1,54 +1,174 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Office Management System</title>
+    <title>Office Management System | Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<body class="oms-body">
 
-<body>
+    <div class="oms-layout">
 
-    <header>
-    <h1>Office Management System</h1>
-    <p>Manage your office efficiently</p>
-</header>
+        <aside class="oms-sidebar">
+            <a href="index.html" class="oms-brand">
+                <span class="oms-brand-icon">O</span>
+                <span>Office<span class="oms-brand-light">Flow</span>
+                    <small>MANAGEMENT SYSTEM</small>
+                </span>
+            </a>
 
-<div class="container">
+            <p class="oms-nav-label">WORKSPACE</p>
 
-    <h2>Dashboard</h2>
+            <nav class="oms-nav">
+                <a href="index.html" class="oms-nav-link active">
+                    <span>▦</span> Dashboard
+                </a>
+                <a href="employees.html" class="oms-nav-link">
+                    <span>♙</span> Employees
+                </a>
+                <a href="departments.html" class="oms-nav-link">
+                    <span>▤</span> Departments
+                </a>
+                <a href="task.html" class="oms-nav-link">
+                    <span>☑</span> Tasks
+                </a>
+            </nav>
 
-    <div class="dashboard">
+            <p class="oms-nav-label">OTHER MODULES</p>
 
-       <div class="card">
-    <h3>Employees</h3>
-    <p>Manage employee records and information.</p>
-    <a href="employees.html">Open Employees</a>
-</div>
-  
-<div class="card">
-    <h3>Tasks</h3>
-    <p>Create and manage office tasks.</p>
-    <a href="task.html">Open Tasks</a>
-</div>
+            <nav class="oms-nav">
+                <a href="#inventory" class="oms-nav-link">
+                    <span>▣</span> Inventory
+                </a>
+                <a href="#attendance" class="oms-nav-link">
+                    <span>◷</span> Attendance
+                </a>
+            </nav>
 
+            <div class="oms-sidebar-bottom">
+                <div class="oms-profile-mark">OM</div>
+                <div>
+                    <strong>Office Admin</strong>
+                    <small>Management Portal</small>
+                </div>
+            </div>
+        </aside>
 
-        <div class="card">
-            <h3>Inventory</h3>
-            <p>Track office equipment and supplies.</p>
-        </div>
+        <main class="oms-main">
 
-        <div class="card">
-            <h3>Attendance</h3>
-            <p>Track employee attendance.</p>
-        </div>
+            <header class="oms-topbar">
+                <div>
+                    <p class="oms-eyebrow">WORKSPACE / OVERVIEW</p>
+                    <h1>Dashboard</h1>
+                    <p class="oms-muted">
+                        Welcome back! Here's your office at a glance.
+                    </p>
+                </div>
+                <div class="oms-date-label">
+                    <span>●</span> Office Management
+                </div>
+            </header>
 
+            <section class="oms-section">
+                <div class="oms-section-heading">
+                    <div>
+                        <h2>Quick overview</h2>
+                        <p>Access your main office management tools.</p>
+                    </div>
+                </div>
+
+                <div class="oms-stats-grid">
+                    <a href="employees.html" class="oms-stat-card">
+                        <span class="oms-stat-icon oms-icon-blue">♙</span>
+                        <span class="oms-stat-label">TEAM MANAGEMENT</span>
+                        <strong>Employees</strong>
+                        <span class="oms-stat-footer">Manage staff records <span>↗</span></span>
+                    </a>
+
+                    <a href="departments.html" class="oms-stat-card">
+                        <span class="oms-stat-icon oms-icon-purple">▤</span>
+                        <span class="oms-stat-label">ORGANISATION</span>
+                        <strong>Departments</strong>
+                        <span class="oms-stat-footer">Manage departments <span>↗</span></span>
+                    </a>
+
+                    <a href="task.html" class="oms-stat-card">
+                        <span class="oms-stat-icon oms-icon-green">☑</span>
+                        <span class="oms-stat-label">WORK MANAGEMENT</span>
+                        <strong>Tasks</strong>
+                        <span class="oms-stat-footer">Assign and track tasks <span>↗</span></span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="oms-section">
+                <div class="oms-section-heading">
+                    <div>
+                        <h2>Office modules</h2>
+                        <p>Choose a module to get started.</p>
+                    </div>
+                </div>
+
+                <div class="oms-modules-grid">
+
+                    <a href="employees.html" class="oms-module-card">
+                        <span class="oms-module-icon oms-icon-blue">♙</span>
+                        <span class="oms-module-content">
+                            <strong>Employee Management</strong>
+                            <small>Register employees, update records and organise staff information.</small>
+                            <b>Open module →</b>
+                        </span>
+                    </a>
+
+                    <a href="departments.html" class="oms-module-card">
+                        <span class="oms-module-icon oms-icon-purple">▤</span>
+                        <span class="oms-module-content">
+                            <strong>Department Management</strong>
+                            <small>Organise departments and maintain departmental information.</small>
+                            <b>Open module →</b>
+                        </span>
+                    </a>
+
+                    <a href="task.html" class="oms-module-card">
+                        <span class="oms-module-icon oms-icon-green">☑</span>
+                        <span class="oms-module-content">
+                            <strong>Task Management</strong>
+                            <small>Assign tasks, set deadlines and monitor progress.</small>
+                            <b>Open module →</b>
+                        </span>
+                    </a>
+
+                    <div class="oms-module-card oms-module-disabled" id="inventory">
+                        <span class="oms-module-icon oms-icon-orange">▣</span>
+                        <span class="oms-module-content">
+                            <strong>Inventory</strong>
+                            <small>Keep track of office equipment and supplies.</small>
+                            <b>Future module</b>
+                        </span>
+                    </div>
+
+                    <div class="oms-module-card oms-module-disabled" id="attendance">
+                        <span class="oms-module-icon oms-icon-orange">◷</span>
+                        <span class="oms-module-content">
+                            <strong>Attendance</strong>
+                            <small>Organise staff attendance and daily records.</small>
+                            <b>Future module</b>
+                        </span>
+                    </div>
+
+                </div>
+            </section>
+
+            <footer class="oms-footer">
+                <span>OfficeFlow Management System</span>
+                <span>© 2026 · Office Administration</span>
+            </footer>
+
+        </main>
     </div>
 
-</div>
-
-<footer>
-    <p>Office Management System © 2026</p>
-</footer>
 </body>
 </html>
+
