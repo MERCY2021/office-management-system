@@ -55,7 +55,12 @@ function loadEmployees() {
         assignedEmployee.value = previousValue;
     }
 }
+// Load employees when the Tasks page opens
+document.addEventListener("DOMContentLoaded", loadEmployees);
 
+// Refresh the list when the employee dropdown is opened
+assignedEmployee.addEventListener("focus", loadEmployees);
+assignedEmployee.addEventListener("click", loadEmployees);
 function createCell(value) {
     const cell = document.createElement("td");
     cell.textContent = value || "—";
@@ -216,8 +221,7 @@ taskList.addEventListener("click", function(event) {
 
     if (button.dataset.action === "edit") {
         loadEmployees();
-        assignedEmployee.addEventListener("focus", loadEmployees);
-assignedEmployee.addEventListener("click", loadEmployees);
+        
 
         const employees = getEmployees();
         const employeeExists = employees.some(
