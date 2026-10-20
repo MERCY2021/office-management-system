@@ -306,3 +306,26 @@ if (restoreFile) {
         reader.readAsText(file);
     });
 }
+// Populate the employee dropdown on the Tasks page
+function populateEmployeeDropdown() {
+    const assignedEmployee = document.getElementById("assignedEmployee");
+
+    if (!assignedEmployee) return;
+
+    const employees = JSON.parse(localStorage.getItem("employees")) || [];
+
+    // Keep the default option
+    assignedEmployee.innerHTML = '<option value="">Select an employee</option>';
+
+    employees.forEach((employee, index) => {
+        const option = document.createElement("option");
+
+        option.value = employee.id ?? index;
+        option.textContent = employee.name;
+
+        assignedEmployee.appendChild(option);
+    });
+}
+
+// Run when the page loads
+document.addEventListener("DOMContentLoaded", populateEmployeeDropdown);
