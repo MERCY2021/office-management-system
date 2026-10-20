@@ -329,3 +329,35 @@ function populateEmployeeDropdown() {
 
 // Run when the page loads
 document.addEventListener("DOMContentLoaded", populateEmployeeDropdown);
+// Populate the employee dropdown on the Tasks page
+function populateEmployeeDropdown() {
+    const dropdown = document.getElementById("assignedEmployee");
+
+    if (!dropdown) return;
+
+    const employees = JSON.parse(
+        localStorage.getItem("employees") || "[]"
+    );
+
+    // Keep only the default option before adding employees
+    dropdown.innerHTML = '<option value="">Select an employee</option>';
+
+    employees.forEach((employee, index) => {
+        const option = document.createElement("option");
+
+        option.value = index;
+        option.textContent = employee.name;
+
+        dropdown.appendChild(option);
+    });
+}
+
+// Run when the page is ready
+if (document.readyState === "loading") {
+    document.addEventListener(
+        "DOMContentLoaded",
+        populateEmployeeDropdown
+    );
+} else {
+    populateEmployeeDropdown();
+}
