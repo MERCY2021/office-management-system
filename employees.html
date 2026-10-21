@@ -8,136 +8,208 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="oms-page">
 
-<header>
-    <h1>Office Management System</h1>
-    <p>Employee Management</p>
-</header>
+<div class="oms-layout">
 
-<div class="backup-section">
-    <h3>Employee Data Backup</h3>
-    <p>Save a backup of your employee records or restore them from a backup file.</p>
-
-    <button type="button" id="backupButton">
-        Download Backup
-    </button>
-
-    <label for="restoreFile">Restore from Backup:</label>
-    <input type="file" id="restoreFile" accept=".json,application/json">
-</div>
-
-<div class="container">
-
-    <h2>Employee Management</h2>
-
-    <div class="card">
-        <h3>Total Employees</h3>
-        <p id="employeeCount">0</p>
-    </div>
-
-    <div class="card">
-        <h3>Total Positions</h3>
-        <p id="positionCount">0</p>
-    </div>
-
-    <div class="card">
-        <h3>Add Employee</h3>
-
-        <form id="employeeForm">
-
-            <label for="name">Full Name</label><br>
-            <input
-                type="text"
-                id="name"
-                required
-                minlength="2"
-                placeholder="Enter full name"
-            ><br><br>
-
-            <label for="position">Position</label><br>
-            <input
-                type="text"
-                id="position"
-                required
-                placeholder="Enter job position"
-            ><br><br>
-
-            <label for="email">Email</label><br>
-            <input
-                type="email"
-                id="email"
-                required
-                placeholder="example@email.com"
-            ><br><br>
-
-            <label for="phone">Phone</label><br>
-            <input
-                type="tel"
-                id="phone"
-                required
-                pattern="[0-9+() -]{7,20}"
-                title="Enter a valid phone number using digits, spaces, +, - or parentheses"
-                placeholder="e.g. 0712345678"
-            ><br><br>
-
-            <button type="submit">Add Employee</button>
-
-        </form>
-    </div>
-
-    <br>
-
-    <div class="card">
-        <h3>Employee List</h3>
-
-        <label for="employeeSearch">Search Employees</label>
-        <input
-            type="text"
-            id="employeeSearch"
-            placeholder="Search by name, position, email or phone..."
-        >
-
-        <div class="employee-controls">
-
-            <div class="control-group">
-                <label for="positionFilter">Filter by Position</label>
-                <select id="positionFilter">
-                    <option value="">All Positions</option>
-                </select>
+    <!-- Sidebar -->
+    <aside class="oms-sidebar">
+        <div class="oms-brand">
+            <div class="oms-brand-icon">O</div>
+            <div>
+                <h2>OfficeFlow</h2>
+                <p>Management System</p>
             </div>
-
-            <div class="control-group">
-                <label for="employeeSort">Sort Employees</label>
-                <select id="employeeSort">
-                    <option value="name-asc">Name (A–Z)</option>
-                    <option value="name-desc">Name (Z–A)</option>
-                    <option value="position-asc">Position (A–Z)</option>
-                    <option value="position-desc">Position (Z–A)</option>
-                </select>
-            </div>
-
         </div>
 
-        <table border="1" width="100%" cellpadding="10">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        <p class="oms-nav-label">WORKSPACE</p>
 
-            <tbody id="employeeList"></tbody>
-        </table>
-    </div>
+        <nav class="oms-nav">
+            <a href="index.html">
+                <span>⌂</span> Dashboard
+            </a>
+            <a href="employees.html" class="active">
+                <span>♙</span> Employees
+            </a>
+            <a href="departments.html">
+                <span>▤</span> Departments
+            </a>
+            <a href="task.html">
+                <span>✓</span> Tasks
+            </a>
+        </nav>
 
-    <br>
+        <p class="oms-nav-label">COMING SOON</p>
 
-    <a href="index.html">← Back to Dashboard</a>
+        <div class="oms-nav-disabled">▣ Inventory</div>
+        <div class="oms-nav-disabled">◷ Attendance</div>
 
+        <div class="oms-sidebar-bottom">
+            <div class="oms-avatar">OM</div>
+            <div>
+                <strong>Office Admin</strong>
+                <small>Workspace</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="oms-main">
+
+        <header class="oms-topbar">
+            <div>
+                <p class="oms-eyebrow">WORKSPACE / EMPLOYEES</p>
+                <h1>Employee Management</h1>
+                <p class="oms-subtitle">
+                    Manage employee records and organisational roles.
+                </p>
+            </div>
+
+            <a href="index.html" class="oms-outline-button">
+                ← Dashboard
+            </a>
+        </header>
+
+        <!-- Employee summary -->
+        <section class="oms-stats">
+            <div class="oms-stat-card">
+                <div class="oms-stat-icon">♙</div>
+                <p>Total Employees</p>
+                <h2 id="employeeCount">0</h2>
+                <small>Registered employee records</small>
+            </div>
+
+            <div class="oms-stat-card">
+                <div class="oms-stat-icon">▤</div>
+                <p>Total Positions</p>
+                <h2 id="positionCount">0</h2>
+                <small>Unique job positions</small>
+            </div>
+        </section>
+
+        <!-- Backup and restore -->
+        <section class="oms-panel oms-backup">
+            <div>
+                <h2>Employee Data Backup</h2>
+                <p>Download your employee records or restore a saved backup.</p>
+            </div>
+
+            <div class="oms-backup-actions">
+                <button type="button" id="backupButton"
+                    class="oms-primary-button">
+                    Download Backup
+                </button>
+
+                <div class="oms-file-control">
+                    <label for="restoreFile">Restore from backup</label>
+                    <input type="file" id="restoreFile"
+                        accept=".json,application/json">
+                </div>
+            </div>
+        </section>
+
+        <!-- Add employee form -->
+        <section class="oms-panel">
+            <div class="oms-section-heading">
+                <div>
+                    <h2>Add Employee</h2>
+                    <p>Enter the employee's details below.</p>
+                </div>
+            </div>
+
+            <form id="employeeForm" class="oms-employee-form">
+
+                <div class="oms-form-field">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name"
+                        required minlength="2"
+                        placeholder="Enter full name">
+                </div>
+
+                <div class="oms-form-field">
+                    <label for="position">Position</label>
+                    <input type="text" id="position"
+                        required placeholder="Enter job position">
+                </div>
+
+                <div class="oms-form-field">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email"
+                        required placeholder="example@email.com">
+                </div>
+
+                <div class="oms-form-field">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone"
+                        required pattern="[0-9+() -]{7,20}"
+                        title="Enter a valid phone number using digits, spaces, +, - or parentheses"
+                        placeholder="e.g. 0712345678">
+                </div>
+
+                <div class="oms-form-submit">
+                    <button type="submit" class="oms-primary-button">
+                        Add Employee
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Employee list -->
+        <section class="oms-panel">
+            <div class="oms-section-heading">
+                <div>
+                    <h2>Employee Directory</h2>
+                    <p>Search, filter, and organise employee records.</p>
+                </div>
+            </div>
+
+            <div class="oms-directory-controls">
+                <div class="oms-search-field">
+                    <label for="employeeSearch">Search Employees</label>
+                    <input type="text" id="employeeSearch"
+                        placeholder="Search name, position, email or phone...">
+                </div>
+
+                <div class="oms-filter-field">
+                    <label for="positionFilter">Filter by Position</label>
+                    <select id="positionFilter">
+                        <option value="">All Positions</option>
+                    </select>
+                </div>
+
+                <div class="oms-filter-field">
+                    <label for="employeeSort">Sort Employees</label>
+                    <select id="employeeSort">
+                        <option value="name-asc">Name (A–Z)</option>
+                        <option value="name-desc">Name (Z–A)</option>
+                        <option value="position-asc">Position (A–Z)</option>
+                        <option value="position-desc">Position (Z–A)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="oms-table-wrapper">
+                <table class="oms-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeList"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="oms-footer">
+            OfficeFlow · Office Management System
+        </footer>
+
+    </main>
 </div>
 
 <script src="script.js"></script>
