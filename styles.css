@@ -928,3 +928,102 @@
         min-width: 700px;
     }
 }
+
+/* ===== EMPLOYEE DIRECTORY TABLE ALIGNMENT ===== */
+
+.oms-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e3e9f1;
+    border-radius: 10px;
+}
+
+.oms-table {
+    width: 100%;
+    min-width: 760px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13px;
+    background: #fff;
+}
+
+.oms-table th,
+.oms-table td {
+    padding: 15px 14px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9edf3;
+    overflow-wrap: anywhere;
+}
+
+.oms-table th {
+    background: #f1f5fa;
+    color: #43556d;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.oms-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.oms-table tbody tr:hover {
+    background: #f7faff;
+}
+
+/* Keep each column consistently aligned */
+.oms-table th:nth-child(1),
+.oms-table td:nth-child(1) {
+    width: 18%;
+}
+
+.oms-table th:nth-child(2),
+.oms-table td:nth-child(2) {
+    width: 17%;
+}
+
+.oms-table th:nth-child(3),
+.oms-table td:nth-child(3) {
+    width: 27%;
+}
+
+.oms-table th:nth-child(4),
+.oms-table td:nth-child(4) {
+    width: 16%;
+}
+
+.oms-table th:nth-child(5),
+.oms-table td:nth-child(5) {
+    width: 22%;
+}
+
+/* Align Edit and Delete buttons neatly */
+.oms-table td:last-child {
+    white-space: nowrap;
+}
+
+.oms-table td:last-child button {
+    display: inline-block;
+    margin: 3px 5px 3px 0;
+    padding: 7px 10px;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Mobile and smaller screens */
+@media (max-width: 700px) {
+    .oms-table {
+        min-width: 760px;
+    }
+
+    .oms-table th,
+    .oms-table td {
+        padding: 12px 10px;
+    }
+}
+
