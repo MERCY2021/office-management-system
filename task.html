@@ -8,93 +8,96 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="oms-body">
+<body class="task-page">
 
-    <header>
-        <h1>Office Management System</h1>
-        <p>Employee Task Management</p>
-    </header>
+    <main class="task-container">
 
-    <div class="container">
+        <header class="task-header">
+            <p>OFFICE MANAGEMENT SYSTEM</p>
+            <h1>Employee Task Management</h1>
+            <p>Assign tasks, monitor deadlines, and track employee progress.</p>
+        </header>
 
-        <h2>Manage Employee Tasks</h2>
+        <section class="task-panel">
+            <h2>Assign a Task</h2>
+            <p>Create a task and assign it to an employee.</p>
 
-        <!-- ASSIGN TASK -->
-        <div class="card">
-            <h3>Assign a Task</h3>
+            <form id="taskForm" class="task-form">
 
-            <form id="taskForm">
+                <div class="task-field">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle"
+                           placeholder="Enter task title" required>
+                </div>
 
-                <label for="taskTitle">Task Title</label>
-                <input
-                    type="text"
-                    id="taskTitle"
-                    required
-                    placeholder="Enter task title"
-                >
+                <div class="task-field">
+                    <label for="assignedEmployee">Assign to Employee</label>
+                    <select id="assignedEmployee" required>
+                        <option value="">Select an employee</option>
+                    </select>
+                </div>
 
-                <label for="taskDescription">Description</label>
-                <textarea
-                    id="taskDescription"
-                    placeholder="Describe the task"
-                ></textarea>
+                <div class="task-field task-field-full">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription"
+                              placeholder="Describe the task"></textarea>
+                </div>
 
-                <label for="assignedEmployee">Assign to Employee</label>
-                <select id="assignedEmployee" required>
-                    <option value="">Select an employee</option>
-                </select>
+                <div class="task-field">
+                    <label for="taskDeadline">Deadline</label>
+                    <input type="date" id="taskDeadline" required>
+                </div>
 
-                <label for="taskDeadline">Deadline</label>
-                <input type="date" id="taskDeadline" required>
+                <div class="task-field">
+                    <label for="taskPriority">Priority</label>
+                    <select id="taskPriority" required>
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
 
-                <label for="taskPriority">Priority</label>
-                <select id="taskPriority" required>
-                    <option value="Low">Low</option>
-                    <option value="Medium" selected>Medium</option>
-                    <option value="High">High</option>
-                </select>
+                <div class="task-field">
+                    <label for="taskStatus">Status</label>
+                    <select id="taskStatus" required>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
 
-                <label for="taskStatus">Status</label>
-                <select id="taskStatus" required>
-                    <option value="Pending">Pending</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-
-                <br><br>
-
-                <button type="submit">Assign Task</button>
+                <div class="task-field task-field-full">
+                    <button type="submit" class="task-submit">
+                        Assign Task
+                    </button>
+                </div>
 
             </form>
-        </div>
+        </section>
 
-        <!-- EMPLOYEE CONNECTION CHECK -->
         <p id="employeeConnectionCheck">
             Checking employee records...
         </p>
 
-        <!-- TASK LIST -->
-        <div class="card">
+        <section class="task-panel">
+            <h2>Task List</h2>
+            <p>Search tasks and filter them by their current status.</p>
 
-            <h3>Task List</h3>
+            <div class="task-controls">
+                <input type="text" id="taskSearch"
+                       placeholder="Search by task or employee"
+                       aria-label="Search tasks">
 
-            <label for="taskSearch">Search Tasks</label>
-            <input
-                type="text"
-                id="taskSearch"
-                placeholder="Search by task or employee"
-            >
+                <select id="statusFilter" aria-label="Filter by status">
+                    <option value="">All Statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
 
-            <label for="statusFilter">Filter by Status</label>
-            <select id="statusFilter">
-                <option value="">All Statuses</option>
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Completed">Completed</option>
-            </select>
-
-            <div style="overflow-x: auto;">
-                <table border="1" width="100%" cellpadding="10">
+            <div class="task-table-wrapper">
+                <table class="task-table">
                     <thead>
                         <tr>
                             <th>Task</th>
@@ -105,20 +108,17 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-
                     <tbody id="taskList"></tbody>
                 </table>
             </div>
+        </section>
 
-        </div>
+        <a class="task-back-link" href="index.html">
+            ← Back to Dashboard
+        </a>
 
-        <p>
-            <a href="index.html">← Back to Dashboard</a>
-        </p>
+    </main>
 
-    </div>
-
-    <!-- EMPLOYEE CONNECTION CHECK SCRIPT -->
     <script>
         try {
             const savedEmployees = localStorage.getItem("employees");
@@ -128,7 +128,6 @@
 
             if (savedEmployees) {
                 const employees = JSON.parse(savedEmployees);
-
                 employeeCheck.textContent = Array.isArray(employees)
                     ? "Employee records found: " + employees.length
                     : "Employee records need checking.";
@@ -143,8 +142,6 @@
         }
     </script>
 
-    <!-- TASK MANAGEMENT JAVASCRIPT -->
     <script src="task.js"></script>
-
 </body>
 </html>
