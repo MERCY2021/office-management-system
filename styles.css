@@ -1024,90 +1024,35 @@
     .oms-table th,
     .oms-table td {
         padding: 12px 10px;
- 
-    
-/* ===== TASK MANAGEMENT PAGE ===== */
+    }
 
-.task-page {
-    margin: 0;
-    background: #f4f6fa;
-    color: #202b3c;
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-}
+/* ===== TASK PAGE - MATCH EXISTING OMS DESIGN ===== */
 
-.task-page *,
-.task-page *::before,
-.task-page *::after {
-    box-sizing: border-box;
-}
-
-.task-container {
-    width: min(1100px, calc(100% - 40px));
-    margin: 35px auto;
-}
-
-.task-header {
-    margin-bottom: 28px;
-}
-
-.task-header h1 {
-    margin: 0 0 8px;
-    color: #102b4e;
-    font-size: 30px;
-}
-
-.task-header p {
-    color: #738096;
-    margin: 0;
-}
-
-.task-panel {
-    margin-bottom: 24px;
-    padding: 25px;
-    background: #fff;
-    border: 1px solid #e3e9f1;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(20, 42, 72, 0.04);
-}
-
-.task-panel h2 {
-    margin: 0 0 8px;
-    color: #183454;
-    font-size: 19px;
-}
-
-.task-panel > p {
-    color: #738096;
-}
-
-.task-form {
+.oms-task-form {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 20px;
 }
 
-.task-field {
+.oms-task-field {
     min-width: 0;
 }
 
-.task-field label {
+.oms-task-field label {
     display: block;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
     color: #394b62;
     font-size: 12px;
     font-weight: 700;
 }
 
-.task-field input,
-.task-field select,
-.task-field textarea,
-.task-controls input,
-.task-controls select {
+.oms-task-field input,
+.oms-task-field select,
+.oms-task-field textarea {
     width: 100%;
+    min-width: 0;
     min-height: 43px;
-    padding: 10px 12px;
+    padding: 11px 12px;
     border: 1px solid #dbe2ec;
     border-radius: 8px;
     background: #fff;
@@ -1116,73 +1061,72 @@
     font-size: 13px;
 }
 
-.task-field textarea {
+.oms-task-field textarea {
     min-height: 100px;
     resize: vertical;
 }
 
-.task-field input:focus,
-.task-field select:focus,
-.task-field textarea:focus,
-.task-controls input:focus,
-.task-controls select:focus {
+.oms-task-field input:focus,
+.oms-task-field select:focus,
+.oms-task-field textarea:focus {
     outline: 2px solid #b7d2f2;
     border-color: #507fb5;
 }
 
-.task-field-full {
+.oms-task-full {
     grid-column: 1 / -1;
 }
 
-.task-submit {
-    padding: 12px 18px;
-    border: 0;
-    border-radius: 8px;
-    background: #103b6d;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.task-submit:hover {
-    background: #174f8e;
-}
-
-.task-controls {
+.oms-task-controls {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 14px;
+    grid-template-columns: minmax(0, 2fr) minmax(160px, 1fr);
+    gap: 16px;
     margin: 20px 0;
 }
 
-.task-table-wrapper {
+.oms-task-controls input,
+.oms-task-controls select {
+    width: 100%;
+    min-width: 0;
+    min-height: 43px;
+    padding: 11px 12px;
+    border: 1px solid #dbe2ec;
+    border-radius: 8px;
+    background: #fff;
+    color: #25364b;
+    font: inherit;
+    font-size: 13px;
+}
+
+.oms-task-table-wrapper {
     width: 100%;
     overflow-x: auto;
     border: 1px solid #e3e9f1;
-    border-radius: 9px;
+    border-radius: 10px;
 }
 
-.task-table {
+.oms-task-table {
     width: 100%;
     min-width: 760px;
     border-collapse: collapse;
+    table-layout: auto;
     background: #fff;
     text-align: left;
     font-size: 13px;
 }
 
-.task-table th {
+.oms-task-table th {
     padding: 14px 12px;
     background: #f1f5fa;
     color: #43556d;
     font-size: 11px;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.4px;
     white-space: nowrap;
 }
 
-.task-table td {
+.oms-task-table td {
     padding: 14px 12px;
     border-bottom: 1px solid #e9edf3;
     color: #34445a;
@@ -1190,11 +1134,15 @@
     vertical-align: middle;
 }
 
-.task-table tbody tr:hover {
+.oms-task-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.oms-task-table tbody tr:hover {
     background: #f7faff;
 }
 
-.task-back-link {
+.oms-task-back {
     display: inline-block;
     margin: 0 0 24px;
     color: #174f8e;
@@ -1202,32 +1150,25 @@
     font-weight: 600;
 }
 
-.task-back-link:hover {
+.oms-task-back:hover {
     text-decoration: underline;
 }
 
 @media (max-width: 700px) {
-    .task-container {
-        width: calc(100% - 26px);
-        margin: 22px auto;
-    }
-
-    .task-header h1 {
-        font-size: 25px;
-    }
-
-    .task-panel {
-        padding: 17px;
-    }
-
-    .task-form,
-    .task-controls {
+    .oms-task-form {
         grid-template-columns: 1fr;
     }
 
-    .task-field-full {
+    .oms-task-full {
         grid-column: auto;
     }
+
+    .oms-task-controls {
+        grid-template-columns: 1fr;
+    }
 }
+
+
+
 
 
