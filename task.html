@@ -8,47 +8,47 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="task-page">
+<body class="oms-page">
 
-    <main class="task-container">
+    <main class=class="oms-main">
 
-        <header class="task-header">
+        <header class="oms-topbar">
             <p>OFFICE MANAGEMENT SYSTEM</p>
             <h1>Employee Task Management</h1>
             <p>Assign tasks, monitor deadlines, and track employee progress.</p>
         </header>
 
-        <section class="task-panel">
+        <section class="oms-panel">
             <h2>Assign a Task</h2>
             <p>Create a task and assign it to an employee.</p>
 
-            <form id="taskForm" class="task-form">
+            <form id="taskForm" class="oms-form">
 
-                <div class="task-field">
+                <div class="oms-field">
                     <label for="taskTitle">Task Title</label>
                     <input type="text" id="taskTitle"
                            placeholder="Enter task title" required>
                 </div>
 
-                <div class="task-field">
+                <div class="oms-field">
                     <label for="assignedEmployee">Assign to Employee</label>
                     <select id="assignedEmployee" required>
                         <option value="">Select an employee</option>
                     </select>
                 </div>
 
-                <div class="task-field task-field-full">
+                <div class="oms-field oms-field-full">
                     <label for="taskDescription">Description</label>
                     <textarea id="taskDescription"
                               placeholder="Describe the task"></textarea>
                 </div>
 
-                <div class="task-field">
+                <div class="oms-field">
                     <label for="taskDeadline">Deadline</label>
                     <input type="date" id="taskDeadline" required>
                 </div>
 
-                <div class="task-field">
+                <div class="oms-field">
                     <label for="taskPriority">Priority</label>
                     <select id="taskPriority" required>
                         <option value="Low">Low</option>
@@ -57,7 +57,7 @@
                     </select>
                 </div>
 
-                <div class="task-field">
+                <div class="oms-field">
                     <label for="taskStatus">Status</label>
                     <select id="taskStatus" required>
                         <option value="Pending">Pending</option>
@@ -66,7 +66,7 @@
                     </select>
                 </div>
 
-                <div class="task-field task-field-full">
+                <div class="oms-field oms-field-full">
                     <button type="submit" class="task-submit">
                         Assign Task
                     </button>
@@ -79,11 +79,11 @@
             Checking employee records...
         </p>
 
-        <section class="task-panel">
+        <section class="oms-panel">
             <h2>Task List</h2>
             <p>Search tasks and filter them by their current status.</p>
 
-            <div class="task-controls">
+            <div class="oms-controls">
                 <input type="text" id="taskSearch"
                        placeholder="Search by task or employee"
                        aria-label="Search tasks">
@@ -96,8 +96,8 @@
                 </select>
             </div>
 
-            <div class="task-table-wrapper">
-                <table class="task-table">
+            <div class="oms-table-wrapper">
+                <table class="oms-table">
                     <thead>
                         <tr>
                             <th>Task</th>
@@ -113,7 +113,7 @@
             </div>
         </section>
 
-        <a class="task-back-link" href="index.html">
+        <a class="oms-back-link" href="index.html">
             ← Back to Dashboard
         </a>
 
