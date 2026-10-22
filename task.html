@@ -4,121 +4,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Employee Tasks - Office Management System</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="oms-page">
 
-    <main class=class="oms-main">
+    <div class="oms-layout">
 
-        <header class="oms-topbar">
-            <p>OFFICE MANAGEMENT SYSTEM</p>
-            <h1>Employee Task Management</h1>
-            <p>Assign tasks, monitor deadlines, and track employee progress.</p>
-        </header>
+        <!-- SIDEBAR -->
+        <aside class="oms-sidebar">
 
-        <section class="oms-panel">
-            <h2>Assign a Task</h2>
-            <p>Create a task and assign it to an employee.</p>
+            <div class="oms-brand">
+                <div class="oms-brand-icon">O</div>
 
-            <form id="taskForm" class="oms-form">
-
-                <div class="oms-field">
-                    <label for="taskTitle">Task Title</label>
-                    <input type="text" id="taskTitle"
-                           placeholder="Enter task title" required>
+                <div>
+                    <h2>Office Management</h2>
+                    <p>MANAGEMENT SYSTEM</p>
                 </div>
+            </div>
 
-                <div class="oms-field">
-                    <label for="assignedEmployee">Assign to Employee</label>
-                    <select id="assignedEmployee" required>
-                        <option value="">Select an employee</option>
-                    </select>
+            <p class="oms-nav-label">MAIN MENU</p>
+
+            <nav class="oms-nav">
+                <a href="index.html">
+                    <span>⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="employees.html">
+                    <span>♙</span>
+                    Employees
+                </a>
+
+                <a href="departments.html">
+                    <span>▤</span>
+                    Departments
+                </a>
+
+                <a href="task.html" class="active">
+                    <span>✓</span>
+                    Tasks
+                </a>
+            </nav>
+
+            <div class="oms-sidebar-bottom">
+                <div class="oms-avatar">MA</div>
+
+                <div>
+                    <strong>Mercy Amondi</strong>
+                    <small>Administrator</small>
                 </div>
+            </div>
 
-                <div class="oms-field oms-field-full">
-                    <label for="taskDescription">Description</label>
-                    <textarea id="taskDescription"
-                              placeholder="Describe the task"></textarea>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="oms-main">
+
+            <!-- PAGE HEADER -->
+            <header class="oms-topbar">
+                <div>
+                    <p class="oms-eyebrow">
+                        OFFICE MANAGEMENT SYSTEM
+                    </p>
+
+                    <h1>Employee Task Management</h1>
+
+                    <p class="oms-subtitle">
+                        Assign tasks, monitor deadlines, and track employee progress.
+                    </p>
                 </div>
+            </header>
 
-                <div class="oms-field">
-                    <label for="taskDeadline">Deadline</label>
-                    <input type="date" id="taskDeadline" required>
-                </div>
+            <!-- ASSIGN TASK SECTION -->
+            <section class="oms-panel">
 
-                <div class="oms-field">
-                    <label for="taskPriority">Priority</label>
-                    <select id="taskPriority" required>
-                        <option value="Low">Low</option>
-                        <option value="Medium" selected>Medium</option>
-                        <option value="High">High</option>
-                    </select>
-                </div>
+                <h2>Assign a Task</h2>
 
-                <div class="oms-field">
-                    <label for="taskStatus">Status</label>
-                    <select id="taskStatus" required>
+                <p>Create a task and assign it to an employee.</p>
+
+                <form id="taskForm" class="oms-task-form">
+
+                    <div class="oms-task-field">
+                        <label for="taskTitle">Task Title</label>
+
+                        <input
+                            type="text"
+                            id="taskTitle"
+                            placeholder="Enter task title"
+                            required
+                        >
+                    </div>
+
+                    <div class="oms-task-field">
+                        <label for="assignedEmployee">
+                            Assign to Employee
+                        </label>
+
+                        <select id="assignedEmployee" required>
+                            <option value="">Select an employee</option>
+                        </select>
+                    </div>
+
+                    <div class="oms-task-field oms-task-full">
+                        <label for="taskDescription">Description</label>
+
+                        <textarea
+                            id="taskDescription"
+                            placeholder="Describe the task"
+                        ></textarea>
+                    </div>
+
+                    <div class="oms-task-field">
+                        <label for="taskDeadline">Deadline</label>
+
+                        <input
+                            type="date"
+                            id="taskDeadline"
+                            required
+                        >
+                    </div>
+
+                    <div class="oms-task-field">
+                        <label for="taskPriority">Priority</label>
+
+                        <select id="taskPriority" required>
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+
+                    <div class="oms-task-field">
+                        <label for="taskStatus">Status</label>
+
+                        <select id="taskStatus" required>
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+
+                    <div class="oms-task-field oms-task-full">
+                        <button
+                            type="submit"
+                            class="oms-primary-button"
+                        >
+                            Assign Task
+                        </button>
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- EMPLOYEE CONNECTION STATUS -->
+            <p id="employeeConnectionCheck">
+                Checking employee records...
+            </p>
+
+            <!-- TASK LIST SECTION -->
+            <section class="oms-panel">
+
+                <h2>Task List</h2>
+
+                <p>
+                    Search tasks and filter them by their current status.
+                </p>
+
+                <div class="oms-task-controls">
+
+                    <input
+                        type="text"
+                        id="taskSearch"
+                        placeholder="Search by task or employee"
+                        aria-label="Search tasks"
+                    >
+
+                    <select
+                        id="statusFilter"
+                        aria-label="Filter by status"
+                    >
+                        <option value="">All Statuses</option>
                         <option value="Pending">Pending</option>
                         <option value="In Progress">In Progress</option>
                         <option value="Completed">Completed</option>
                     </select>
+
                 </div>
 
-                <div class="oms-field oms-field-full">
-                    <button type="submit" class="task-submit">
-                        Assign Task
-                    </button>
+                <div class="oms-task-table-wrapper">
+
+                    <table class="oms-task-table">
+
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Employee</th>
+                                <th>Deadline</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="taskList">
+                            <!-- Tasks are displayed here by task.js -->
+                        </tbody>
+
+                    </table>
+
                 </div>
 
-            </form>
-        </section>
+            </section>
 
-        <p id="employeeConnectionCheck">
-            Checking employee records...
-        </p>
+            <!-- BACK TO DASHBOARD -->
+            <a class="oms-task-back" href="index.html">
+                ← Back to Dashboard
+            </a>
 
-        <section class="oms-panel">
-            <h2>Task List</h2>
-            <p>Search tasks and filter them by their current status.</p>
+        </main>
 
-            <div class="oms-controls">
-                <input type="text" id="taskSearch"
-                       placeholder="Search by task or employee"
-                       aria-label="Search tasks">
+    </div>
 
-                <select id="statusFilter" aria-label="Filter by status">
-                    <option value="">All Statuses</option>
-                    <option value="Pending">Pending</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-            </div>
-
-            <div class="oms-table-wrapper">
-                <table class="oms-table">
-                    <thead>
-                        <tr>
-                            <th>Task</th>
-                            <th>Employee</th>
-                            <th>Deadline</th>
-                            <th>Priority</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="taskList"></tbody>
-                </table>
-            </div>
-        </section>
-
-        <a class="oms-back-link" href="index.html">
-            ← Back to Dashboard
-        </a>
-
-    </main>
-
+    <!-- CHECK EMPLOYEE RECORDS -->
     <script>
         try {
             const savedEmployees = localStorage.getItem("employees");
@@ -128,6 +240,7 @@
 
             if (savedEmployees) {
                 const employees = JSON.parse(savedEmployees);
+
                 employeeCheck.textContent = Array.isArray(employees)
                     ? "Employee records found: " + employees.length
                     : "Employee records need checking.";
@@ -142,6 +255,9 @@
         }
     </script>
 
+    <!-- TASK FUNCTIONALITY -->
     <script src="task.js"></script>
+
 </body>
 </html>
+
