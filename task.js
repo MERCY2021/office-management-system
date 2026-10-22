@@ -9,6 +9,23 @@ const taskStatus = document.getElementById("taskStatus");
 const taskSearch = document.getElementById("taskSearch");
 const statusFilter = document.getElementById("statusFilter");
 const taskList = document.getElementById("taskList");
+// Task summary counters
+const totalTaskCount = document.getElementById("totalTaskCount");
+const pendingTaskCount = document.getElementById("pendingTaskCount");
+const completedTaskCount = document.getElementById("completedTaskCount");
+
+// Update task summary cards
+function updateTaskCounts() {
+    totalTaskCount.textContent = tasks.length;
+
+    pendingTaskCount.textContent = tasks.filter(
+        task => task.status === "Pending"
+    ).length;
+
+    completedTaskCount.textContent = tasks.filter(
+        task => task.status === "Completed"
+    ).length;
+}
 
 let tasks = JSON.parse(localStorage.getItem("officeTasks")) || [];
 let editingTaskId = null;
@@ -68,6 +85,7 @@ function createCell(value) {
 }
 
 function renderTasks() {
+        updateTaskCounts();
     const searchTerm = taskSearch.value.trim().toLowerCase();
     const selectedStatus = statusFilter.value;
 
